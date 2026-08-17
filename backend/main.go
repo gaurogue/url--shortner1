@@ -1,18 +1,18 @@
 package main
 
 import (
-    "crypto/md5"
-    "encoding/hex"
-    "encoding/json"
-    "errors"
-    "fmt"
-    "net/http"
-    "os"
-    "strings"
-    "time"
+	"crypto/md5"
+	"encoding/hex"
+	"encoding/json"
+	"errors"
+	"fmt"
+	"net/http"
+	"os"
+	"strings"
+	"time"
 
-    "github.com/golang-jwt/jwt/v5"
-    "golang.org/x/crypto/bcrypt"
+	"github.com/golang-jwt/jwt/v5"
+	"golang.org/x/crypto/bcrypt"
 )
 
 type URL struct {
@@ -31,6 +31,7 @@ var urlDB = make(map[string]URL)
 var userURLs = make(map[string][]URL)
 var userDB = make(map[string]User)
 
+// JWT secret is taken from the environment variable
 var jwtKey = []byte(os.Getenv("JWT_SECRET"))
 
 func enableCors(w http.ResponseWriter) {
@@ -101,6 +102,12 @@ func ShortURLHandler(w http.ResponseWriter, r *http.Request) {
 	tokenStr = strings.TrimPrefix(tokenStr, "Bearer ")
 
 	token, err := jwt.Parse(tokenStr, func(token *jwt.Token) (interface{}, error) {
+
+		// Only allow HMAC signing methods
+		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+			return nil, fmt.Errorf("unexpected signing method")
+		}
+
 		return jwtKey, nil
 	})
 
@@ -150,26 +157,25 @@ func ShortURLHandler(w http.ResponseWriter, r *http.Request) {
 
 	userURLs[email] = append(userURLs[email], newURL)
 
-	// IMPORTANT:
-	// Use the deployed domain automatically.
+	// Use HTTP locally and HTTPS when deployed behind Render.
 	scheme := "http"
 
-if r.TLS != nil {
-    scheme = "https"
-}
+	if r.TLS != nil {
+		scheme = "https"
+	}
 
-if r.Header.Get("X-Forwarded-Proto") == "https" {
-    scheme = "https"
-}
+	if r.Header.Get("X-Forwarded-Proto") == "https" {
+		scheme = "https"
+	}
 
-response := map[string]string{
-    "short_url": fmt.Sprintf(
-        "%s://%s/redirect/%s",
-        scheme,
-        r.Host,
-        shortURL,
-    ),
-}
+	response := map[string]string{
+		"short_url": fmt.Sprintf(
+			"%s://%s/redirect/%s",
+			scheme,
+			r.Host,
+			shortURL,
+		),
+	}
 
 	w.Header().Set("Content-Type", "application/json")
 
@@ -286,33 +292,6 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 			"exp":   time.Now().Add(time.Hour * 1).Unix(),
 		},
 	)
-	
-	func main() {
-
-    // Serve frontend
-    frontendFS := http.FileServer(http.Dir("frontend"))
-    http.Handle("/", frontendFS)
-
-    // API routes
-    http.HandleFunc("/shorten", ShortURLHandler)
-    http.HandleFunc("/redirect/", redirectURLHandler)
-    http.HandleFunc("/register", RegisterHandler)
-    http.HandleFunc("/login", LoginHandler)
-
-    port := os.Getenv("PORT")
-
-    if port == "" {
-        port = "3000"
-    }
-
-    fmt.Println("🚀 Server running on port", port)
-
-    err := http.ListenAndServe("0.0.0.0:"+port, nil)
-
-    if err != nil {
-        fmt.Println("Error starting server:", err)
-    }
-}
 
 	tokenString, err := token.SignedString(jwtKey)
 
@@ -330,3 +309,33 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	)
 }
 
+// MAIN
+
+func main() {
+
+	// Serve frontend
+	frontendFS := http.FileServer(http.Dir("frontend"))
+	http.Handle("/", frontendFS)
+
+	// API routes
+	http.HandleFunc("/shorten", ShortURLHandler)
+	http.HandleFunc("/redirect/", redirectURLHandler)
+	http.HandleFunc("/register", RegisterHandler)
+	http.HandleFunc("/login", LoginHandler)
+
+	// Render provides PORT.
+	// Locally, use port 3000.
+	port := os.Getenv("PORT")
+
+	if port == "" {
+		port = "3000"
+	}
+
+	fmt.Println("🚀 Server running on port", port)
+
+	err := http.ListenAndServe("0.0.0.0:"+port, nil)
+
+	if err != nil {
+		fmt.Println("Error starting server:", err)
+	}
+}
