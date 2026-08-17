@@ -1,0 +1,44 @@
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    font-family:Poppins,sans-serif;
+}
+
+.card{
+    background:rgba(255,255,255,0.05);
+    padding:40px;
+    border-radius:20px;
+    width:320px;
+    text-align:center;
+    backdrop-filter:blur(10px);
+}
+
+input{
+    width:100%;
+    margin:12px 0;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#1e293b;
+    color:white;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    margin-top:10px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    cursor:pointer;
+}
+
+.toggle{
+    margin-top:15px;
+    color:#60a5fa;
+    cursor:pointer;
+}

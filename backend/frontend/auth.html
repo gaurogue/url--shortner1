@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auth | Shortly</title>
+
+<link rel="stylesheet" href="auth.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h2 id="title">Login</h2>
+
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+
+        <button onclick="handleAuth()" id="authBtn">
+            Login
+        </button>
+
+        <p class="toggle" onclick="toggleMode()">
+            Don't have an account? Register
+        </p>
+
+    </div>
+
+</div>
+
+<script src="auth.js"></script>
+
+</body>
+</html>

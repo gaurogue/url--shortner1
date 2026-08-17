@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | URL Shortener</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- Background -->
+<div class="background">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+</div>
+
+<!-- Navbar -->
+<nav>
+    <div class="logo">Shortly</div>
+
+    <div>
+        <a href="index.html" class="login-btn">Home</a>
+    </div>
+</nav>
+
+<!-- About Section -->
+<div class="container">
+    <div class="card about-card">
+
+        <h1 style="text-align:center; margin-bottom:20px;">
+            🚀 About This Project
+        </h1>
+
+        <p class="section-text">
+            This project is a full-stack URL Shortener application designed to convert 
+            long and complex URLs into short, easy-to-share links. It demonstrates 
+            real-world backend development, authentication systems, and frontend integration.
+        </p>
+
+        <!-- WHAT IS -->
+        <h2 class="section-title">📌 What is a URL Shortener?</h2>
+
+        <p class="section-text">
+            A URL shortener is a tool that takes a long web address and transforms it into a short, compact link. 
+            When users click the shortened link, they are automatically redirected to the original URL.
+        </p>
+
+        <div class="concept-box">
+    <p><b>Example:</b></p>
+    <p>Original → https://www.example.com/products/item/very-long-url</p>
+    <p>Short → https://your-domain.com/redirect/abc123</p>
+</div>
+
+        <!-- WORKING -->
+        <h2 class="section-title">⚙️ How It Works</h2>
+
+        <ul class="styled-list">
+            <li>User enters a long URL in the input field</li>
+            <li>Backend generates a unique short ID using hashing</li>
+            <li>Original URL and short ID are stored</li>
+            <li>Short link is returned to the user</li>
+            <li>When visited, the system redirects to the original URL</li>
+        </ul>
+
+        <!-- CONCEPTS -->
+        <h2 class="section-title">🧠 Core Concepts Used</h2>
+
+        <div class="concept-box">
+            <h3>🔹 Hashing (MD5)</h3>
+            <p>
+                The application uses hashing to generate a fixed-length unique ID from a URL. 
+                This ensures fast processing and avoids duplicate entries.
+            </p>
+        </div>
+
+        <div class="concept-box">
+            <h3>🔹 REST APIs</h3>
+            <p>
+                The backend exposes API endpoints such as /shorten, /login, and /register 
+                to handle communication between frontend and backend.
+            </p>
+        </div>
+
+        <div class="concept-box">
+            <h3>🔹 JWT Authentication</h3>
+            <p>
+                Secure user authentication is implemented using JSON Web Tokens. 
+                Users must log in to generate short URLs.
+            </p>
+        </div>
+
+        <div class="concept-box">
+            <h3>🔹 Password Security (Bcrypt)</h3>
+            <p>
+                Passwords are hashed before storage using bcrypt to ensure security 
+                and prevent data leaks.
+            </p>
+        </div>
+
+        <div class="concept-box">
+            <h3>🔹 HTTP Redirection</h3>
+            <p>
+                The backend uses HTTP redirect responses to send users to the original URL 
+                when they access a shortened link.
+            </p>
+        </div>
+
+        <div class="concept-box">
+            <h3>🔹 In-Memory Storage</h3>
+            <p>
+                Currently, data is stored using Go maps. This can be replaced with 
+                databases like MongoDB or MySQL for scalability.
+            </p>
+        </div>
+
+        <!-- REAL WORLD -->
+        <h2 class="section-title">🌍 Real-World Applications</h2>
+
+        <ul class="styled-list">
+            <li>Social media sharing</li>
+            <li>Marketing campaigns and analytics</li>
+            <li>QR code generation</li>
+            <li>Affiliate tracking</li>
+            <li>Email link optimization</li>
+        </ul>
+
+        <!-- WHY IMPORTANT -->
+        <h2 class="section-title">🚀 Why This Project Matters</h2>
+
+        <p class="section-text">
+            This project is not just a basic tool — it represents how real-world SaaS 
+            applications are built. It includes authentication, backend APIs, 
+            security practices, and frontend interaction.
+        </p>
+
+        <p class="section-text">
+            It showcases essential developer skills such as:
+        </p>
+
+        <ul class="styled-list">
+            <li>Backend development using Go</li>
+            <li>API design and integration</li>
+            <li>User authentication and security</li>
+            <li>Frontend UI/UX design</li>
+            <li>System thinking and problem-solving</li>
+        </ul>
+
+        <div class="concept-box">
+            <h3>💡 Final Thought</h3>
+            <p>
+                This URL shortener is a simplified version of real platforms like Bitly, 
+                and it demonstrates how scalable web services are designed from scratch.
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    Built with ❤️ using Go + HTML + CSS + JavaScript
+</footer>
+
+</body>
+</html>

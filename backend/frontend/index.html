@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shortly | URL Shortener</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Animated Background -->
+    <div class="background">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+        <div class="blob blob3"></div>
+    </div>
+
+    <!-- Navigation -->
+   <div class="navbar">
+    <h1 class="logo">Shortly</h1>
+
+    <div class="nav-buttons">
+        <a href="auth.html" class="login-btn">Login</a>
+         <a href="about.html" class="about-btn">About Project</a>
+    </div>
+</div>
+    <!-- Hero -->
+    <section class="hero">
+
+        <h1>
+            Make Long URLs
+            <span>Short & Beautiful</span>
+        </h1>
+
+        <p>
+            Transform lengthy links into elegant, shareable URLs in seconds.
+            Fast, secure, and built with Go.
+        </p>
+
+    </section>
+
+    <!-- Main Card -->
+    <section class="container">
+
+        <div class="card">
+
+            <h2>Shorten Your Link</h2>
+
+            <div class="input-group">
+
+                <input
+                    type="url"
+                    id="urlInput"
+                    placeholder="Paste your long URL here..."
+                >
+
+                <button id="shortenBtn">
+                    Shorten URL
+                </button>
+
+            </div>
+
+            <!-- Loading -->
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <p>Generating your short URL...</p>
+            </div>
+
+            <!-- Result -->
+            <div id="resultBox" class="result hidden">
+
+                <h3>Your Short URL</h3>
+
+                <div class="result-row">
+
+                    <input
+                        type="text"
+                        id="shortUrl"
+                        readonly
+                    >
+
+                    <button id="copyBtn">
+                        Copy
+                    </button>
+
+                </div>
+
+                <a
+                    id="visitLink"
+                    href="#"
+                    target="_blank"
+                >
+                    Open Link →
+                </a>
+
+            </div>
+
+            <!-- Error -->
+            <div id="errorBox" class="error hidden">
+
+                Invalid URL. Please enter a valid website.
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+
+        <div class="feature">
+
+            <div class="icon">⚡</div>
+
+            <h3>Fast</h3>
+
+            <p>
+                Generate short URLs instantly using a Go-powered backend.
+            </p>
+
+        </div>
+
+        <div class="feature">
+
+            <div class="icon">🔒</div>
+
+            <h3>Secure</h3>
+
+            <p>
+                Simple and reliable URL redirection with clean architecture.
+            </p>
+
+        </div>
+
+        <div class="feature">
+
+            <div class="icon">🌍</div>
+
+            <h3>Share Anywhere</h3>
+
+            <p>
+                Copy and share your links across any platform.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            Built with ❤️ using Go & Modern Web Technologies
+        </p>
+
+    </footer>
+
+    <!-- Toast -->
+    <div id="toast" class="toast">
+        Link Copied Successfully!
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
