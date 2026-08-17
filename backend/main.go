@@ -31,7 +31,7 @@ var urlDB = make(map[string]URL)
 var userURLs = make(map[string][]URL)
 var userDB = make(map[string]User)
 
-var jwtKey = []byte("my_secret_key")
+var jwtKey = []byte(os.Getenv("JWT_SECRET"))
 
 func enableCors(w http.ResponseWriter) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
@@ -286,6 +286,33 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 			"exp":   time.Now().Add(time.Hour * 1).Unix(),
 		},
 	)
+	
+	func main() {
+
+    // Serve frontend
+    frontendFS := http.FileServer(http.Dir("frontend"))
+    http.Handle("/", frontendFS)
+
+    // API routes
+    http.HandleFunc("/shorten", ShortURLHandler)
+    http.HandleFunc("/redirect/", redirectURLHandler)
+    http.HandleFunc("/register", RegisterHandler)
+    http.HandleFunc("/login", LoginHandler)
+
+    port := os.Getenv("PORT")
+
+    if port == "" {
+        port = "3000"
+    }
+
+    fmt.Println("🚀 Server running on port", port)
+
+    err := http.ListenAndServe("0.0.0.0:"+port, nil)
+
+    if err != nil {
+        fmt.Println("Error starting server:", err)
+    }
+}
 
 	tokenString, err := token.SignedString(jwtKey)
 
@@ -303,30 +330,3 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	)
 }
 
-func main() {
-
-	// Serve frontend files
-	frontendFS := http.FileServer(http.Dir("frontend"))
-
-	http.Handle("/", frontendFS)
-
-	// API routes
-	http.HandleFunc("/shorten", ShortURLHandler)
-	http.HandleFunc("/redirect/", redirectURLHandler)
-	http.HandleFunc("/register", RegisterHandler)
-	http.HandleFunc("/login", LoginHandler)
-
-	port := os.Getenv("PORT")
-
-	if port == "" {
-		port = "3000"
-	}
-
-	fmt.Println("🚀 Server running on port", port)
-
-	err := http.ListenAndServe("0.0.0.0:"+port, nil)
-
-	if err != nil {
-		fmt.Println("Error starting server:", err)
-	}
-}
