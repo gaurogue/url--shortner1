@@ -73,22 +73,46 @@
                 <p>Generating your short URL...</p>
             </div>
 
-            <!-- Result -->
-            <div id="resultBox" class="result hidden">
+           <div id="resultBox" class="result hidden">
 
-                <h3>Your Short URL</h3>
+    <h3>Your Short URL</h3>
 
-                <div class="result-row">
+    <div class="result-row">
 
-                    <input
-                        type="text"
-                        id="shortUrl"
-                        readonly
-                    >
+        <input
+            type="text"
+            id="shortUrl"
+            readonly
+        >
 
-                    <button id="copyBtn">
-                        Copy
-                    </button>
+        <button id="copyBtn">
+            Copy
+        </button>
+
+    </div>
+
+    <!-- QR Code Section -->
+    <div class="qr-section">
+
+        <h3>Scan QR Code</h3>
+
+        <div id="qrcode"></div>
+
+        <button id="downloadQR">
+            Download QR
+        </button>
+
+    </div>
+
+    <a
+        id="visitLink"
+        href="#"
+        target="_blank"
+    >
+        Open Link →
+    </a>
+
+</div>
 
                 </div>
 
@@ -164,12 +188,19 @@
     </footer>
 
     <!-- Toast -->
-    <div id="toast" class="toast">
-        Link Copied Successfully!
-    </div>
+<div id="toast" class="toast">
+    Link Copied Successfully!
+</div>
 
-    <!-- JavaScript -->
-    <script src="script.js"></script>
+<!-- QR Code Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<!-- Your JavaScript -->
+<script src="script.js"></script>
 
 </body>
 </html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script src="script.js"></script>
