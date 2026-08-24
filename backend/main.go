@@ -198,6 +198,57 @@ func redirectURLHandler(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, url.OriginalURL, http.StatusFound)
 }
 
+func myURLsHandler(w http.ResponseWriter, r *http.Request) {
+
+    if r.Method != http.MethodGet {
+        http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+        return
+    }
+
+    tokenString := r.Header.Get("Authorization")
+
+    if tokenString == "" {
+        http.Error(w, "Missing authorization token", http.StatusUnauthorized)
+        return
+    }
+
+    tokenString = strings.TrimPrefix(tokenString, "Bearer ")
+
+    claims := jwt.MapClaims{}
+
+    token, err := jwt.ParseWithClaims(
+        tokenString,
+        claims,
+        func(token *jwt.Token) (interface{}, error) {
+            return jwtKey, nil
+        },
+    )
+
+    if err != nil || !token.Valid {
+        http.Error(w, "Invalid token", http.StatusUnauthorized)
+        return
+    }
+
+    email, ok := claims["email"].(string)
+
+    if !ok {
+        http.Error(w, "Invalid user information", http.StatusUnauthorized)
+        return
+    }
+
+    urls := userURLs[email]
+
+    if urls == nil {
+        urls = []URL{}
+    }
+
+    w.Header().Set("Content-Type", "application/json")
+
+    json.NewEncoder(w).Encode(urls)
+}
+
+
+
 // REGISTER
 
 func RegisterHandler(w http.ResponseWriter, r *http.Request) {
@@ -322,6 +373,7 @@ func main() {
 	http.HandleFunc("/redirect/", redirectURLHandler)
 	http.HandleFunc("/register", RegisterHandler)
 	http.HandleFunc("/login", LoginHandler)
+	http.HandleFunc("/my-urls", myURLsHandler)
 
 	// Render provides PORT.
 	// Locally, use port 3000.
