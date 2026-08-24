@@ -624,3 +624,496 @@ About Page Styling
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
 }
+
+
+
+/* =========================================
+   URL HISTORY PAGE
+   Shortly - Modern Dark Dashboard
+========================================= */
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    color: #f5f5f7;
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(124, 58, 237, 0.18),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(91, 33, 182, 0.15),
+            transparent 30%
+        ),
+        #080811;
+}
+
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.container {
+    width: min(1200px, 92%);
+    margin: 0 auto;
+    padding: 55px 0 60px;
+}
+
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.container > h1 {
+    display: inline-block;
+
+    margin: 0;
+
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #b06cff
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.container > p {
+    margin: 10px 0 35px;
+
+    color: #9b9bab;
+
+    font-size: 16px;
+}
+
+
+/* =========================================
+   BACK BUTTON
+========================================= */
+
+.container > a {
+    float: right;
+
+    margin-top: 10px;
+
+    color: #b06cff;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    transition: 0.25s ease;
+}
+
+
+.container > a:hover {
+    color: #d0a3ff;
+
+    transform: translateX(-4px);
+}
+
+
+/* =========================================
+   HISTORY CONTAINER
+========================================= */
+
+#historyContainer {
+    margin-top: 30px;
+
+    padding: 10px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.055),
+            rgba(255, 255, 255, 0.018)
+        );
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.45);
+
+    backdrop-filter: blur(20px);
+}
+
+
+/* =========================================
+   HISTORY CARD
+========================================= */
+
+.history-item {
+
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(280px, 1.5fr)
+        minmax(250px, 1fr)
+        auto;
+
+    align-items: center;
+
+    gap: 25px;
+
+    margin: 8px 0;
+
+    padding: 24px;
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(255, 255, 255, 0.045),
+            rgba(255, 255, 255, 0.018)
+        );
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* Hover effect */
+
+.history-item:hover {
+
+    transform: translateY(-3px);
+
+    border-color: rgba(168, 85, 247, 0.45);
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(124, 58, 237, 0.10),
+            rgba(255, 255, 255, 0.025)
+        );
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.30);
+}
+
+
+/* =========================================
+   ORIGINAL URL
+========================================= */
+
+.history-original strong,
+.history-short strong {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #a9a9b7;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+.history-original p {
+
+    margin: 0;
+
+    color: #eeeeF2;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+
+    word-break: break-all;
+}
+
+
+/* =========================================
+   SHORT URL
+========================================= */
+
+.history-short p {
+
+    margin: 0;
+
+    color: #b56cff;
+
+    font-size: 15px;
+
+    font-weight: 500;
+
+    word-break: break-all;
+}
+
+
+.history-short p:hover {
+    color: #d2a2ff;
+}
+
+
+/* =========================================
+   ACTION BUTTONS
+========================================= */
+
+.history-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    white-space: nowrap;
+}
+
+
+.history-actions button,
+.history-actions a {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 75px;
+
+    padding: 10px 16px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+/* Copy */
+
+.history-actions button {
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    color: #ffffff;
+
+    background: rgba(255, 255, 255, 0.07);
+}
+
+
+.history-actions button:hover {
+
+    transform: translateY(-2px);
+
+    background: rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+
+/* Open */
+
+.history-actions a {
+
+    border: 1px solid rgba(168, 85, 247, 0.45);
+
+    color: #c084fc;
+
+    background: rgba(124, 58, 237, 0.12);
+}
+
+
+.history-actions a:hover {
+
+    transform: translateY(-2px);
+
+    color: #ffffff;
+
+    background: rgba(124, 58, 237, 0.30);
+
+    box-shadow:
+        0 8px 25px rgba(124, 58, 237, 0.25);
+}
+
+
+/* =========================================
+   EMPTY HISTORY
+========================================= */
+
+#historyContainer > p {
+
+    padding: 70px 20px;
+
+    margin: 0;
+
+    text-align: center;
+
+    color: #8d8d9c;
+
+    font-size: 16px;
+}
+
+
+/* =========================================
+   LOADING STATE
+========================================= */
+
+#loadingHistory {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 150px;
+
+    color: #a970ff !important;
+}
+
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: #080811;
+}
+
+
+::-webkit-scrollbar-thumb {
+
+    border-radius: 10px;
+
+    background: #472080;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: #7135b5;
+}
+
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 900px) {
+
+    .history-item {
+
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+
+    }
+
+
+    .history-actions {
+
+        justify-content: flex-start;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .container {
+
+        width: 90%;
+
+        padding-top: 35px;
+
+    }
+
+
+    .container > h1 {
+
+        font-size: 36px;
+
+    }
+
+
+    .container > a {
+
+        float: none;
+
+        display: inline-block;
+
+        margin: 5px 0 20px;
+
+    }
+
+
+    #historyContainer {
+
+        padding: 7px;
+
+        border-radius: 15px;
+
+    }
+
+
+    .history-item {
+
+        padding: 18px;
+
+        border-radius: 13px;
+
+    }
+
+
+    .history-actions {
+
+        width: 100%;
+
+    }
+
+
+    .history-actions button,
+    .history-actions a {
+
+        flex: 1;
+
+    }
+
+}
